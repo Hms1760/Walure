@@ -1,9 +1,7 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -16,10 +14,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); // Ensure HTTPS is enabled
+
+// Serve static files from wwwroot
+app.UseStaticFiles();
+
+// Serve the default file (index.html) from wwwroot
+app.UseDefaultFiles();  // This enables the index.html to be served at the root URL
 
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
