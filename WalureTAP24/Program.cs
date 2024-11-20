@@ -14,13 +14,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection(); // Ensure HTTPS is enabled
-
-// Serve static files from wwwroot
+app.UseHttpsRedirection();
+app.UseDefaultFiles();
 app.UseStaticFiles();
 
-// Serve the default file (index.html) from wwwroot
-app.UseDefaultFiles();  // This enables the index.html to be served at the root URL
 
 app.UseAuthorization();
 app.MapControllers();
